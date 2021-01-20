@@ -1,0 +1,94 @@
+AUTO_RESUME: true
+CUDNN:
+  BENCHMARK: true
+  DETERMINISTIC: false
+  ENABLED: true
+DATA_DIR: ''
+GPUS: (0,)
+OUTPUT_DIR: 'output'
+LOG_DIR: 'log'
+WORKERS: 24
+PRINT_FREQ: 100
+
+DATASET:
+  COLOR_RGB: true
+  DATASET: 'coco'
+  DATA_FORMAT: jpg
+  FLIP: true
+  NUM_JOINTS_HALF_BODY: 8
+  PROB_HALF_BODY: 0.3
+  ROOT: 'data/coco/'
+  ROT_FACTOR: 45
+  SCALE_FACTOR: 0.35
+  TEST_SET: 'val2017'
+  TRAIN_SET: 'train2017'
+MODEL:
+  # Transformer Encoder
+  DIM_MODEL: 256
+  DIM_FEEDFORWARD: 1024
+  N_HEAD: 8
+  ENCODER_LAYERS: 3
+  ATTENTION_ACTIVATION: relu
+  POS_EMBEDDING: sine
+  # #
+  NAME: 'transpose_r'
+  PRETRAINED: 'models/pytorch/imagenet/resnet50-19c8e357.pth'
+  IMAGE_SIZE:
+  - 192
+  - 256
+  HEATMAP_SIZE:
+  - 48
+  - 64
+  SIGMA: 2
+  NUM_JOINTS: 17
+  TARGET_TYPE: 'gaussian'
+  EXTRA:
+    FINAL_CONV_KERNEL: 1
+    DECONV_WITH_BIAS: false
+    NUM_DECONV_LAYERS: 1
+    NUM_DECONV_FILTERS:
+    - 256
+    NUM_DECONV_KERNELS:
+    - 4
+    NUM_LAYERS: 50
+LOSS:
+  USE_TARGET_WEIGHT: true
+TRAIN:
+  BATCH_SIZE_PER_GPU: 28
+  SHUFFLE: true
+  BEGIN_EPOCH: 0
+  END_EPOCH: 230
+  OPTIMIZER: adam
+  LR: 0.0001  # Initial learning rate
+  LR_END: 0.00001  # Final learning rate
+  LR_FACTOR: 0.25  # for MultiStepLR
+  LR_STEP:  # for MultiStepLR
+  - 100
+  - 150
+  - 200
+  - 220
+  WD: 0.0001
+  GAMMA1: 0.99
+  GAMMA2: 0.0
+  MOMENTUM: 0.9
+  NESTEROV: false
+TEST:
+  BLUR_KERNEL: 11
+  BATCH_SIZE_PER_GPU: 4
+  COCO_BBOX_FILE: 'data/coco/person_detection_results/COCO_val2017_detections_AP_H_56_person.json'
+  BBOX_THRE: 1.0
+  IMAGE_THRE: 0.0
+  IN_VIS_THRE: 0.2
+  MODEL_FILE: output/coco/pose_resnet/pretrain_sinepe_res3_1_8_deconv1_d256_h1024_enc3_256x192/model_best.pth
+  NMS_THRE: 1.0
+  OKS_THRE: 0.9
+  USE_GT_BBOX: true
+  FLIP_TEST: true
+  POST_PROCESS: true
+  SHIFT_HEATMAP: true
+DEBUG:
+  DEBUG: false
+  SAVE_BATCH_IMAGES_GT: true
+  SAVE_BATCH_IMAGES_PRED: true
+  SAVE_HEATMAPS_GT: true
+  SAVE_HEATMAPS_PRED: true
