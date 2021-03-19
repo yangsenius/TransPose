@@ -68,8 +68,8 @@ Given an input image, a pretrained TransPose model, and the predicted locations,
 `TransPose-H-A4` with `threshold=0.00`
 ![example](attention_map_image_dependency_transposeh_thres_0.0.jpg)
 
-`TransPose-H-A4` with `threshold=0.0008`
-![example](attention_map_image_dependency_transposeh_thres_0.0008)
+`TransPose-H-A4` with `threshold=0.00075
+![example](attention_map_image_dependency_transposeh_thres_0.00075.jpg)
 
 ## Getting started
 
