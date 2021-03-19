@@ -35,7 +35,7 @@ def update_config(cfg, yamlfilename):
     cfg.freeze()
 
 
-dependencies = ['torch']
+dependencies = ['torch','yacs']
 
 
 def tpr_a4_256x192(pretrained=False, **kwargs):

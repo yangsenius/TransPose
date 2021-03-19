@@ -1,6 +1,6 @@
-## TransPose: Towards Explainable Human Pose Estimation by Transformer
+## Introduction
 
-**[TransPose](https://arxiv.org/abs/2012.14214)** is a simple and explainable human pose estimation model based on a CNN feature extractor, a Transformer Encoder, and a prediction head. Given an image, the attention layers built in Transformer can capture long-range spatial relationships between keypoints and explain what dependencies the predicted keypoints locations highly rely on. 
+**[TransPose](https://arxiv.org/abs/2012.14214)** is a human pose estimation model based on a CNN feature extractor, a Transformer Encoder, and a prediction head. Given an image, the attention layers built in Transformer can efficiently capture long-range spatial relationships between keypoints and explain what dependencies the predicted keypoints locations highly rely on. 
 
 ![Architecture](transpose_architecture.png)
 
@@ -8,7 +8,7 @@
 
 ## Model Zoo
 
-We choose two types of CNNs as the backbone candidates: ResNet and HRNet. The derived convolutional blocks are ResNet-S, HRNet-S-W32, and HRNet-S-W48.
+We choose two types of CNNs as the backbone candidates: ResNet and HRNet. The derived convolutional blocks are ResNet-Small, HRNet-Small-W32, and HRNet-Small-W48.
 
 | Model          | Backbone    | #Attention layers |  d   |  h   | #Heads | #Params | AP (coco val gt bbox) | Download |
 | -------------- | ----------- | :---------------: | :--: | :--: | :----: | :-----: | :-------------------: | :------: |
@@ -18,9 +18,14 @@ We choose two types of CNNs as the backbone candidates: ResNet and HRNet. The de
 | TransPose-H-A4 | HRNet-S-W48 |         4         |  96  | 192  |   1    | 17.3Mb  |         77.5          | [model](https://github.com/yangsenius/TransPose/releases/download/Hub/tp_h_48_256x192_enc4_d96_h192_mh1.pth) |
 | TransPose-H-A6 | HRNet-S-W48 |         6         |  96  | 192  |   1    | 17.5Mb  |         78.1          | [model](https://github.com/yangsenius/TransPose/releases/download/Hub/tp_h_48_256x192_enc6_d96_h192_mh1.pth) |
 
+## News
+
+- [2021-3-19] ***TransPose-H-A6*** achieves **93.9%** accuracy on MPII test-dev set, with *256x192* input resolution. Details will be published.
+
 ### Quick use
 
 You can directly load TransPose-R-A4 or TransPose-H-A4 models with pretrained weights on COCO train2017 dataset from Torch Hub, simply by:
+
 ```python
 import torch
 
@@ -37,10 +42,10 @@ tpr = torch.hub.load('yangsenius/TransPose:main', 'tpr_a4_256x192', pretrained=T
 | TransPose-H-A4 |  256x192   |  41  |  17.5  | 0.753 | 0.900 | 0.818  | 0.717  | 0.821  | 0.803 | 0.939 | 0.861  | 0.761  | 0.865  |
 | TransPose-H-A6 |  256x192   |  38  |  21.8  | 0.758 | 0.901 | 0.821  | 0.719  | 0.828  | 0.808 | 0.939 | 0.864  | 0.764  | 0.872  |
 
-Note: 
+Note:
 
-- we computed the average FPS* of testing 100 samples from coco val dataset (with batchsize=1) on a single NVIDIA 2080Ti GPU. The FPS may fluctuate up and down at different tests. 
-- We trained our different models on different hardware platforms: *2 x RTX2080Ti GPUs (TP-R-A3, TP-R-A4), 4 x TiTan XP GPUs (TP-H-S, TP-H-A4), and 4 x Tesla P40 GPUs (TP-H-A6)*. 
+- we computed the average FPS* of testing 100 samples from coco val dataset (with batchsize=1) on a single NVIDIA 2080Ti GPU. The FPS may fluctuate up and down at different tests.
+- We trained our different models on different hardware platforms: *2 x RTX2080Ti GPUs (TP-R-A3, TP-R-A4), 4 x TiTan XP GPUs (TP-H-S, TP-H-A4), and 4 x Tesla P40 GPUs (TP-H-A6)*.
 
 ### Results on COCO test-dev2017 with detector having human AP of 60.9 on COCO test-dev2017 dataset
 
@@ -63,13 +68,16 @@ Given an input image, a pretrained TransPose model, and the predicted locations,
 `TransPose-H-A4` with `threshold=0.00`
 ![example](attention_map_image_dependency_transposeh_thres_0.0.jpg)
 
+`TransPose-H-A4` with `threshold=0.0008`
+![example](attention_map_image_dependency_transposeh_thres_0.0008)
+
 ## Getting started
 
 ### Installation
 
 1. Clone this repository, and we'll call the directory that you cloned as ${POSE_ROOT}
 
-   ```
+   ```bash
    git clone https://github.com/yangsenius/TransPose.git
    ```
 
@@ -77,21 +85,21 @@ Given an input image, a pretrained TransPose model, and the predicted locations,
 
 3. Install package dependencies. Make sure the python environment >=3.7
 
-   ```
+   ```bash
    pip install -r requirements.txt
    ```
 
 4. Make output (training models and files) and log (tensorboard log) directories under ${POSE_ROOT} & Make libs
 
-   ```
+   ```bash
    mkdir output log
    cd ${POSE_ROOT}/lib
    make
    ```
-   
+
 5. Download pretrained models from the [releases](https://github.com/yangsenius/TransPose/releases) of this repo to the specified directory
 
-   ```
+   ```txt
    ${POSE_ROOT}
     `-- models
         `-- pytorch
@@ -111,7 +119,7 @@ Given an input image, a pretrained TransPose model, and the predicted locations,
 
 We follow the steps of [HRNet](https://github.com/leoxiaobin/deep-high-resolution-net.pytorch#data-preparation) to prepare the COCO train/val/test dataset and the annotations. The detected person results are downloaded from [OneDrive](https://1drv.ms/f/s!AhIXJn_J-blWzzDXoz5BeFl8sWM-) or [GoogleDrive](https://drive.google.com/drive/folders/1fRUDNUDxe9fjqcRZ2bnF_TKMlO0nB_dk?usp=sharing). Please download or link them to ${POSE_ROOT}/data/coco/, and make them look like this:
 
-```
+```txt
 ${POSE_ROOT}/data/coco/
 |-- annotations
 |   |-- person_keypoints_train2017.json
@@ -132,24 +140,19 @@ ${POSE_ROOT}/data/coco/
 
 #### Testing on COCO val2017 dataset
 
-```
+```bash
 python tools/test.py --cfg experiments/coco/transpose_r/TP_R_256x192_d256_h1024_enc4_mh8.yaml TEST.USE_GT_BBOX True
 ```
 
 #### Training on COCO train2017 dataset
 
-```
+```bash
 python tools/train.py --cfg experiments/coco/transpose_r/TP_R_256x192_d256_h1024_enc4_mh8.yaml
 ```
 
 ### Acknowledgements
 
-Great thanks for these papers and their open-source codes：
-
-- [HRNet] [https://github.com/leoxiaobin/deep-high-resolution-net.pytorch](https://github.com/leoxiaobin/deep-high-resolution-net.pytorch)
-- [DETR] [https://github.com/facebookresearch/detr](https://github.com/facebookresearch/detr)
-
-- [DarkPose] [https://github.com/ilovepose/DarkPose](https://github.com/ilovepose/DarkPose)
+Great thanks for these papers and their open-source codes：[HRNet](https://github.com/leoxiaobin/deep-high-resolution-net.pytorch),  [DETR](https://github.com/facebookresearch/detr),  [DarkPose](https://github.com/ilovepose/DarkPose)
 
 ### License
 
