@@ -1,6 +1,6 @@
 ## Introduction
 
-**[TransPose](https://arxiv.org/abs/2012.14214)** is a human pose estimation model based on a CNN feature extractor, a Transformer Encoder, and a prediction head. Given an image, the attention layers built in Transformer can efficiently capture long-range spatial relationships between keypoints and explain what dependencies the predicted keypoints locations highly rely on. 
+**[TransPose](https://arxiv.org/abs/2012.14214)** is a human pose estimation model based on a CNN feature extractor, a Transformer Encoder, and a prediction head. Given an image, the attention layers built in Transformer can capture long-range spatial relationships between keypoints and explain what dependencies the predicted keypoints locations highly rely on. 
 
 ![Architecture](transpose_architecture.png)
 
@@ -18,9 +18,9 @@ We choose two types of CNNs as the backbone candidates: ResNet and HRNet. The de
 | TransPose-H-A4 | HRNet-S-W48 |         4         |  96  | 192  |   1    | 17.3Mb  |         77.5          | [model](https://github.com/yangsenius/TransPose/releases/download/Hub/tp_h_48_256x192_enc4_d96_h192_mh1.pth) |
 | TransPose-H-A6 | HRNet-S-W48 |         6         |  96  | 192  |   1    | 17.5Mb  |         78.1          | [model](https://github.com/yangsenius/TransPose/releases/download/Hub/tp_h_48_256x192_enc6_d96_h192_mh1.pth) |
 
-## News
+### News
 
-- [2021-3-19] ***TransPose-H-A6*** achieves **93.9%** accuracy on MPII test-dev set, with *256x192* input resolution. Details will be published.
+- [2021-3-19]:  ***TransPose-H-A6*** achieves **93.9%** accuracy on MPII test set, with *256x256* input resolution. Details will be published.
 
 ### Quick use
 
@@ -68,7 +68,7 @@ Given an input image, a pretrained TransPose model, and the predicted locations,
 `TransPose-H-A4` with `threshold=0.00`
 ![example](attention_map_image_dependency_transposeh_thres_0.0.jpg)
 
-`TransPose-H-A4` with `threshold=0.00075
+`TransPose-H-A4` with `threshold=0.00075`
 ![example](attention_map_image_dependency_transposeh_thres_0.00075.jpg)
 
 ## Getting started

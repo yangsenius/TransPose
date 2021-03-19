@@ -50,7 +50,7 @@ def tpr_a4_256x192(pretrained=False, **kwargs):
     if pretrained:
         if cfg.TEST.MODEL_FILE and osp.isfile(cfg.TEST.MODEL_FILE):
             print(">>Load pretrained weights from {}".format(cfg.TEST.MODEL_FILE))
-            pretrained_state_dict = torch.load(cfg.TEST.MODEL_FILE)
+            pretrained_state_dict = torch.load(cfg.TEST.MODEL_FILE, map_location=torch.device('cpu'))
             model.load_state_dict(pretrained_state_dict, strict=True)
         else:
             ### for pytorch 1.7 ###
@@ -64,9 +64,9 @@ def tpr_a4_256x192(pretrained=False, **kwargs):
             if not osp.isfile(local_path):
                 torch.hub.download_url_to_file(
                     web_url, local_path, hash_prefix=None, progress=True)
-            checkpoint = torch.load(local_path)
+            checkpoint = torch.load(local_path, map_location=torch.device('cpu'))
             model.load_state_dict(checkpoint)
-        print("Successfully loaded pretrained weights!")
+        print("Successfully loaded model  (on cpu) with pretrained weights!")
     return model
 
 
@@ -82,7 +82,7 @@ def tph_a4_256x192(pretrained=False, **kwargs):
     if pretrained:
         if cfg.TEST.MODEL_FILE and osp.isfile(cfg.TEST.MODEL_FILE):
             print(">>Load pretrained weights from {}".format(cfg.TEST.MODEL_FILE))
-            pretrained_state_dict = torch.load(cfg.TEST.MODEL_FILE)
+            pretrained_state_dict = torch.load(cfg.TEST.MODEL_FILE, map_location=torch.device('cpu'))
             model.load_state_dict(pretrained_state_dict, strict=True)
         else:
             ### for pytorch 1.7 ###
@@ -96,7 +96,7 @@ def tph_a4_256x192(pretrained=False, **kwargs):
             if not osp.isfile(local_path):
                 torch.hub.download_url_to_file(
                     web_url, local_path, hash_prefix=None, progress=True)
-            checkpoint = torch.load(local_path)
+            checkpoint = torch.load(local_path, map_location=torch.device('cpu'))
             model.load_state_dict(checkpoint)
-        print("Successfully loaded pretrained weights!")
+        print("Successfully loaded model  (on cpu) with pretrained weights!")
     return model
