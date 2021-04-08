@@ -4,7 +4,7 @@
 
 ![Architecture](transpose_architecture.png)
 
-[[arxiv 2012.14214]](https://arxiv.org/abs/2012.14214) [[paper]](https://arxiv.org/pdf/2012.14214.pdf) 
+[[arxiv 2012.14214]](https://arxiv.org/abs/2012.14214) [[paper]](https://arxiv.org/pdf/2012.14214.pdf) [[update]](https://github.com/yangsenius/TransPose/releases/download/paper/transpose.pdf)
 
 ## Model Zoo
 
@@ -17,10 +17,6 @@ We choose two types of CNNs as the backbone candidates: ResNet and HRNet. The de
 | TransPose-H-S  | HRNet-S-W32 |         4         |  64  | 128  |   1    |  8.0Mb  |         76.1          | [model](https://github.com/yangsenius/TransPose/releases/download/Hub/tp_h_32_256x192_enc4_d64_h128_mh1.pth) |
 | TransPose-H-A4 | HRNet-S-W48 |         4         |  96  | 192  |   1    | 17.3Mb  |         77.5          | [model](https://github.com/yangsenius/TransPose/releases/download/Hub/tp_h_48_256x192_enc4_d96_h192_mh1.pth) |
 | TransPose-H-A6 | HRNet-S-W48 |         6         |  96  | 192  |   1    | 17.5Mb  |         78.1          | [model](https://github.com/yangsenius/TransPose/releases/download/Hub/tp_h_48_256x192_enc6_d96_h192_mh1.pth) |
-
-### News
-
-- [2021-3-19]:  ***TransPose-H-A6*** achieves **93.9%** accuracy on MPII test set, with *256x256* input resolution. Details will be published.
 
 ### Quick use
 
