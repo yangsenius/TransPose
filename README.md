@@ -4,7 +4,7 @@
 
 ![Architecture](transpose_architecture.png)
 
-[[arxiv 2012.14214]](https://arxiv.org/abs/2012.14214) [[paper]](https://arxiv.org/pdf/2012.14214.pdf) [[update]](https://github.com/yangsenius/TransPose/releases/download/paper/transpose.pdf)
+[[arxiv 2012.14214]](https://arxiv.org/abs/2012.14214) [[paper]](https://arxiv.org/pdf/2012.14214.pdf) [[update]](https://github.com/yangsenius/TransPose/releases/download/paper/transpose.pdf) [[demo-jupyter-notebook]](demo.ipynb)
 
 ## Model Zoo
 
@@ -41,7 +41,7 @@ tpr = torch.hub.load('yangsenius/TransPose:main', 'tpr_a4_256x192', pretrained=T
 Note:
 
 - we computed the average FPS* of testing 100 samples from coco val dataset (with batchsize=1) on a single NVIDIA 2080Ti GPU. The FPS may fluctuate up and down at different tests.
-- We trained our different models on different hardware platforms: *2 x RTX2080Ti GPUs (TP-R-A3, TP-R-A4), 4 x TiTan XP GPUs (TP-H-S, TP-H-A4), and 4 x Tesla P40 GPUs (TP-H-A6)*.
+- We trained our different models on different hardware platforms: *1 x RTX2080Ti GPUs (TP-R-A4), 4 x TiTan XP GPUs (TP-H-S, TP-H-A4), and 4 x Tesla P40 GPUs (TP-H-A6)*.
 
 ### Results on COCO test-dev2017 with detector having human AP of 60.9 on COCO test-dev2017 dataset
 
@@ -52,6 +52,8 @@ Note:
 | TransPose-H-A6 | 256x192    | 17.5M   | 21.8   | 0.750 | 0.922 | 0.823  | 0.713  | 0.811  | 0.801 | 0.954 | 0.867  | 0.759  | 0.859  |
 
 ### Visualization
+
+[Jupyter Notebook Demo](demo.ipynb)
 
 Given an input image, a pretrained TransPose model, and the predicted locations, we can visualize the spatial dependencies of the predicted locations with threshold for the attention scores.
 
@@ -155,6 +157,8 @@ Great thanks for these papers and their open-source codes：[HRNet](https://gith
 This repository is released under the [MIT LICENSE](https://github.com/yangsenius/TransPose/blob/main/LICENSE).
 
 ## Citation
+
+If you find this repository useful please give it a star or consider citing our work:
 
 ```tex
 @article{yang2020transpose,

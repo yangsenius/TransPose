@@ -60,7 +60,7 @@ def tpr_a4_256x192(pretrained=False, **kwargs):
             # )  # there is a bug on loading a zipfile format for PyTorch 1.6, but it has been solved in PyTorch 1.7
             web_url = "https://github.com/yangsenius/TransPose/releases/download/Hub/tp_r_256x192_enc4_d256_h1024_mh8.pth"
             print(">>Load pretrained weights from url: {}".format(web_url))
-            local_path = '/tmp/tp_h_48_256x192_enc4_d96_h192_mh1.pth'
+            local_path = '/tmp/tp_r_256x192_enc4_d256_h1024_mh8.pth'
             if not osp.isfile(local_path):
                 torch.hub.download_url_to_file(
                     web_url, local_path, hash_prefix=None, progress=True)
