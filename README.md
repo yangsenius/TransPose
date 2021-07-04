@@ -158,7 +158,7 @@ This repository is released under the [MIT LICENSE](https://github.com/yangseniu
 
 ## Citation
 
-If you find this repository useful please give it a star or consider citing our work:
+If you find this repository useful please give it a star 🌟 or consider citing our work:
 
 ```tex
 @article{yang2020transpose,
