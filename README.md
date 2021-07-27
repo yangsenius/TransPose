@@ -168,10 +168,10 @@ This repository is released under the [MIT LICENSE](https://github.com/yangseniu
 If you find this repository useful please give it a star 🌟 or consider citing our work:
 
 ```tex
-@inproceedings{yang2020transpose,
+@inproceedings{yang2021transpose,
   title={TransPose: Keypoint Localization via Transformer},
   author={Yang, Sen and Quan, Zhibin and Nie, Mu and Yang, Wankou},
-  journal={IEEE/CVF International Conference on Computer Vision (ICCV)},
+  booktitle={IEEE/CVF International Conference on Computer Vision (ICCV)},
   year={2021}
 }
 ```
