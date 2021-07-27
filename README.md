@@ -1,10 +1,14 @@
 ## Introduction
 
-**[TransPose](https://arxiv.org/abs/2012.14214)** is a human pose estimation model based on a CNN feature extractor, a Transformer Encoder, and a prediction head. Given an image, the attention layers built in Transformer can capture long-range spatial relationships between keypoints and explain what dependencies the predicted keypoints locations highly rely on. 
+**[TransPose](https://arxiv.org/abs/2012.14214)** is a human pose estimation model based on a CNN feature extractor, a Transformer Encoder, and a prediction head. Given an image, the attention layers built in Transformer can efficiently capture long-range spatial relationships between keypoints and explain what dependencies the predicted keypoints locations highly rely on. 
 
 ![Architecture](transpose_architecture.png)
 
-[[arxiv 2012.14214]](https://arxiv.org/abs/2012.14214) [[paper]](https://arxiv.org/pdf/2012.14214.pdf) [[update]](https://github.com/yangsenius/TransPose/releases/download/paper/transpose.pdf) [[demo-jupyter-notebook]](demo.ipynb)
+[[arxiv 2012.14214]](https://arxiv.org/abs/2012.14214) [[paper]](https://arxiv.org/pdf/2012.14214.pdf) [[demo-notebook]](demo.ipynb)
+
+> [TransPose: Keypoint Localization via Transformer](https://github.com/yangsenius/TransPose/releases/download/paper/iccv21_transpose.pdf)
+> [Sen Yang](https://github.com/yangsenius), [Zhibin Quan](https://github.com/SigmaQuan), Mu Nie, [Wankou Yang](https://dblp.org/pid/99/3602.html)
+> ICCV 2021
 
 ## Model Zoo
 
@@ -26,6 +30,7 @@ You can directly load TransPose-R-A4 or TransPose-H-A4 models with pretrained we
 import torch
 
 tpr = torch.hub.load('yangsenius/TransPose:main', 'tpr_a4_256x192', pretrained=True)
+tph = torch.hub.load('yangsenius/TransPose:main', 'tph_a4_256x192', pretrained=True)
 ```
 
 ### Results on COCO val2017 with detector having human AP of 56.4 on COCO val2017 dataset
@@ -161,10 +166,10 @@ This repository is released under the [MIT LICENSE](https://github.com/yangseniu
 If you find this repository useful please give it a star 🌟 or consider citing our work:
 
 ```tex
-@article{yang2020transpose,
-  title={TransPose: Towards Explainable Human Pose Estimation by Transformer},
+@inproceedings{yang2020transpose,
+  title={TransPose: Keypoint Localization via Transformer},
   author={Yang, Sen and Quan, Zhibin and Nie, Mu and Yang, Wankou},
-  journal={arXiv preprint arXiv:2012.14214},
-  year={2020}
+  journal={IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year={2021}
 }
 ```
