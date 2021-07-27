@@ -7,8 +7,8 @@
 [[arxiv 2012.14214]](https://arxiv.org/abs/2012.14214) [[paper]](https://arxiv.org/pdf/2012.14214.pdf) [[demo-notebook]](demo.ipynb)
 
 
-> [TransPose: Keypoint Localization via Transformer](https://github.com/yangsenius/TransPose/releases/download/paper/iccv21_transpose.pdf),  
-> [Sen Yang](https://github.com/yangsenius), [Zhibin Quan](https://github.com/SigmaQuan), [Mu Nie](https://github.com/niechuanmu), [Wankou Yang](https://dblp.org/pid/99/3602.html),  
+> TransPose: Keypoint Localization via Transformer,
+> [Sen Yang](https://github.com/yangsenius), [Zhibin Quan](https://github.com/SigmaQuan), [Mu Nie](https://github.com/niechuanmu), [Wankou Yang](https://dblp.org/pid/99/3602.html),
 > ICCV 2021
 
 
